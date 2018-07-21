@@ -9,14 +9,18 @@ import 'whatwg-fetch';
 // Change me if you prefer sass,scss, less. (Note you may need to update the build config)
 import './index.css';
 import App from './components/App';
-// import reducers from './reducers';
+import reducers from './reducers';
 
-// TODO: initialze store and apply middleware
-// const store = createStore(reducers, {}, applyMiddleware(reduxThunk));
+const store = createStore(reducers, {}, applyMiddleware(reduxThunk));
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById('root')
+);
 
 // Hot Module Replacement
-if (module.hot) {
-  module.hot.accept();
-}
+// if (module.hot) {
+//   module.hot.accept();
+// }
