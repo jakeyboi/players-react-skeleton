@@ -11,10 +11,6 @@ import Roster from './Roster';
 import Player from './Player';
 
 class App extends Component {
-  componentDidMount() {
-    // this.props.registerUser();
-  }
-
   render() {
     return (
       <BrowserRouter>
