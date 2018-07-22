@@ -4,7 +4,7 @@ import { REGISTER_USER, LOGIN_USER } from './types';
 const URL = 'https://players-api.developer.alchemy.codes/api';
 
 export const registerUser = formValues => async (dispatch) => {
-  console.log(`form values: ${  JSON.stringify(formValues)}`);
+  console.log(`form values: ${ JSON.stringify(formValues)}`);
   const {
     firstName,
     lastName,
@@ -33,7 +33,7 @@ export const registerUser = formValues => async (dispatch) => {
 // Jake Irvin, jbirvin1289@gmail.com 3jUbe0eSnPkbJp@sGXHA
 
 export const loginUser = formValues => async (dispatch) => {
-  console.log('form values: ' + JSON.stringify(formValues));
+  console.log(`form values: ${  JSON.stringify(formValues)}`);
   const { email, password } = formValues;
   const user = {
     email,

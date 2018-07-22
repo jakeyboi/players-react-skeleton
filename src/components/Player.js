@@ -1,5 +1,5 @@
-import _ from 'lodash';
 import React, { Component } from 'react';
+import _ from 'lodash';
 import newPlayerFields from './form/newPlayerFields';
 
 class Player extends Component {
@@ -12,7 +12,7 @@ class Player extends Component {
       lastName: '',
       rating: 0,
       handedness: '',
-    }
+    };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleRadioChange = this.handleRadioChange.bind(this);
