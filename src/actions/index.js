@@ -61,7 +61,7 @@ export const addPlayer = formValues => async (dispatch) => {
     handedness
   };
 
-  const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1YjUzYTliZjMxMGQyMTdmZjM5MDE0MjkiLCJpYXQiOjE1MzIyOTQ3ODB9.IQhP0G8hvCLtGmQOafzVSAOQ4NK2rMleWLxnBrbScrQ';
+  const token = '';
   const authConfig = { headers: { Authorization: 'Bearer ' + token }};
 
   try {
