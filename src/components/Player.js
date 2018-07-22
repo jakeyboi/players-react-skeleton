@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
+import { Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
 import newPlayerFields from './form/newPlayerFields';
+
 
 class Player extends Component {
 
@@ -18,7 +21,7 @@ class Player extends Component {
     this.handleRadioChange = this.handleRadioChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
 
-    console.log(this.state);
+    console.log('player state: ' + JSON.stringify(this.state));
   }
 
   handleChange(e) {
@@ -69,6 +72,10 @@ class Player extends Component {
   }
 
   render() {
+    // if (!this.props.auth) {
+    //   return <Redirect to={{ pathname: '/' }} />;
+    // }
+
     return (
       <div>
         <h4>Add New Player</h4>
@@ -86,4 +93,8 @@ class Player extends Component {
   }
 }
 
-export default Player;
+function mapStateToProps({ auth }) {
+  return { auth };
+}
+
+export default connect(mapStateToProps)(Player);
