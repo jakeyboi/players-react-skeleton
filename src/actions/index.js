@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { REGISTER_USER, LOGIN_USER } from './types';
+import { REGISTER_USER, LOGIN_USER, ADD_PLAYER } from './types';
 
 const URL = 'https://players-api.developer.alchemy.codes/api';
 
@@ -48,3 +48,27 @@ export const loginUser = formValues => async (dispatch) => {
     console.log(err);
   }
 };
+
+// {"success":true,"player":{"first_name":"test","last_name":"player","rating":3,"handedness":"left","id":"5b54ed52310d217ff3901431"}}
+
+export const addPlayer = formValues => async (dispatch) => {
+  console.log(`form values: ${JSON.stringify(formValues)}`);
+  const { firstName, lastName, rating, handedness } = formValues;
+  const player = {
+    first_name: firstName,
+    last_name: lastName,
+    rating,
+    handedness
+  };
+
+  const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1YjUzYTliZjMxMGQyMTdmZjM5MDE0MjkiLCJpYXQiOjE1MzIyOTQ3ODB9.IQhP0G8hvCLtGmQOafzVSAOQ4NK2rMleWLxnBrbScrQ';
+  const authConfig = { headers: { Authorization: 'Bearer ' + token }};
+
+  try {
+    const res = await axios.post(`${URL}/players`, player, authConfig);
+    console.log(res.data);
+    dispatch({ type: ADD_PLAYER, payload: res.data });
+  } catch (err) {
+    console.log(err);
+  }
+}

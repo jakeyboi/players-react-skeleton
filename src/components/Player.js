@@ -3,13 +3,11 @@ import _ from 'lodash';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import newPlayerFields from './form/newPlayerFields';
-
+import { addPlayer } from '../actions';
 
 class Player extends Component {
-
   constructor(props) {
     super(props);
-
     this.state = {
       firstName: '',
       lastName: '',
@@ -20,8 +18,6 @@ class Player extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleRadioChange = this.handleRadioChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-
-    console.log('player state: ' + JSON.stringify(this.state));
   }
 
   handleChange(e) {
@@ -36,7 +32,7 @@ class Player extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    // this.props.loginUser(this.state);
+    this.props.addPlayer(this.state);
   }
 
   renderFields() {
@@ -76,10 +72,14 @@ class Player extends Component {
     //   return <Redirect to={{ pathname: '/' }} />;
     // }
 
+    if (this.props.roster) {
+      return <Redirect to={{ pathname: '/roster' }} />;
+    }
+
     return (
       <div>
         <h4>Add New Player</h4>
-        <form>
+        <form onSubmit={this.handleSubmit}>
           {this.renderFields()}
           <button
             type="submit"
@@ -93,8 +93,9 @@ class Player extends Component {
   }
 }
 
-function mapStateToProps({ auth }) {
-  return { auth };
+function mapStateToProps(state) {
+  const { auth, roster } = state;
+  return { auth, roster };
 }
 
-export default connect(mapStateToProps)(Player);
+export default connect(mapStateToProps, { addPlayer })(Player);
