@@ -74,14 +74,11 @@ export const addPlayer = formValues => async (dispatch) => {
 };
 
 export const fetchPlayers = () => async (dispatch) => {
-  console.log('in fetchPlayers...');
-
   const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1YjUzYTliZjMxMGQyMTdmZjM5MDE0MjkiLCJpYXQiOjE1MzIyOTgzOTB9.a7T6BPPaRkRSDsc8VxNsBMWwDy2DtC6fqIGHvB3WWhc';
   const authConfig = { headers: { Authorization: 'Bearer ' + token }};
 
   try {
     const res = await axios.get(`${URL}/players`, authConfig);
-    console.log(res.data);
     dispatch({ type: FETCH_ROSTER, payload: res.data });
   } catch (err) {
     console.log(err);
