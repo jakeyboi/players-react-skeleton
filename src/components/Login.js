@@ -2,7 +2,7 @@ import _ from 'lodash';
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
-import formFields from './loginFormFields';
+import formFields from './form/loginFormFields';
 import { loginUser } from '../actions';
 
 class Login extends Component {
