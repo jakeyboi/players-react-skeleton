@@ -23,7 +23,7 @@ class Roster extends Component {
             </tr>
           </thead>
           <tbody>
-            {_.map(players, ({ id, first_name, last_name, handedness, rating}) =>
+            {_.map(players, ({ id, first_name, last_name, handedness, rating }) =>
               (<tr key={id}>
                 <td>{first_name}</td>
                 <td>{last_name}</td>

@@ -78,7 +78,7 @@ class Player extends Component {
 
     return (
       <div>
-        <h4>Add New Player</h4>
+        <h4>Add Player</h4>
         <form onSubmit={this.handleSubmit}>
           {this.renderFields()}
           <button
