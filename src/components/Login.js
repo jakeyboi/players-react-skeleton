@@ -43,7 +43,6 @@ class Login extends Component {
   }
 
   render() {
-    console.log('login auth: ' + JSON.stringify(this.props.auth));
     if (this.props.auth) {
       return <Redirect to={{ pathname: '/roster' }} />;
     }

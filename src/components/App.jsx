@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { BrowserRouter, Route, Router } from 'react-router-dom';
 import { connect } from 'react-redux';
+// import { withRouter } from 'react-router'
 import * as actions from '../actions';
 
 import Header from './Header';
@@ -16,20 +17,17 @@ class App extends Component {
       <BrowserRouter>
         <div>
           <Header />
-          <div className="container">
-            <Route exact path="/" component={Landing} />
-            <Route exact path="/register" component={Register} />
-            <Route exact path="/login" component={Login} />
-            <Route exact path="/roster" component={Roster} />
-            <Route exact path="/player/new" component={Player} />
-          </div>
+            <div className="container">
+              <Route exact path="/" component={Landing} />
+              <Route exact path="/register" component={Register} />
+              <Route exact path="/login" component={Login} />
+              <Route exact path="/roster" component={Roster} />
+              <Route exact path="/player/new" component={Player} />
+            </div>
         </div>
       </BrowserRouter>
     );
   }
 }
 // mapstatetoprops, actions
-export default connect(
-  null,
-  actions
-)(App);
+export default connect(null, actions)(App);

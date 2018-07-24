@@ -42,27 +42,32 @@ export const loginUser = ({ email, password }) => async (dispatch) => {
   }
 };
 
-export const addPlayer = ({ firstName, lastName, rating, handedness }) => async (dispatch) => {
+export const addPlayer = ({
+  firstName,
+  lastName,
+  rating,
+  handedness,
+}, token) => async (dispatch) => {
   const player = {
     first_name: firstName,
     last_name: lastName,
     rating,
-    handedness
+    handedness,
   };
 
-  const token = '';
   const authConfig = { headers: { Authorization: `Bearer ${token}` } };
 
   try {
     const res = await axios.post(`${URL}/players`, player, authConfig);
     dispatch({ type: ADD_PLAYER, payload: res.data });
+    // const res2 = await axios.get(`${URL}/players`, authConfig);
+    // dispatch({ type: FETCH_ROSTER, payload: res.data });
   } catch (err) {
     console.log(err);
   }
 };
 
-export const fetchPlayers = () => async (dispatch) => {
-  const token = '';
+export const fetchPlayers = token => async (dispatch) => {
   const authConfig = { headers: { Authorization: `Bearer ${token}` } };
 
   try {

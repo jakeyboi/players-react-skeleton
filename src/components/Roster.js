@@ -1,15 +1,22 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
 import { connect } from 'react-redux';
+import { Redirect, Link } from 'react-router-dom';
 import { fetchPlayers } from '../actions';
 
 class Roster extends Component {
   constructor(props) {
     super(props);
-    this.props.fetchPlayers();
+    // this.setState(this.state);
+    console.log(`login token: ${JSON.stringify(this.props.auth.token)}`);
+    // this.props.playerAdded = '';
+    if(this.props.auth) {
+      this.props.fetchPlayers(this.props.auth.token);
+    }
   }
 
   renderPlayers() {
+    console.log('roster in ROSTER: ' + JSON.stringify(this.props.roster));
     if (this.props.roster) {
       const { players } = this.props.roster;
       return (
@@ -39,6 +46,10 @@ class Roster extends Component {
   }
 
   render() {
+    if (!this.props.auth) {
+      return <Redirect to={{ pathname: '/' }} />;
+    }
+
     const styles = {
       marginTop: '20px',
     };
@@ -49,10 +60,10 @@ class Roster extends Component {
             <h4>Roster</h4>
           </div>
           <div className="col s4" style={styles}>
-            <a href="/player/new" className="waves-effect waves-light btn">
+            <Link to="/player/new" className="right waves-effect waves-light btn">
               <i className="material-icons left">add</i>
               Add Player
-            </a>
+            </Link>
           </div>
         </div>
         {this.renderPlayers()}

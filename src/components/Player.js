@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import _ from 'lodash';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import newPlayerFields from './form/newPlayerFields';
 import { addPlayer } from '../actions';
+import { ADD_PLAYER } from '../actions/types';
 
 class Player extends Component {
   constructor(props) {
@@ -32,7 +34,8 @@ class Player extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    this.props.addPlayer(this.state);
+    this.props.history.push('/roster');
+    this.props.addPlayer(this.state, this.props.auth.token);
   }
 
   renderFields() {
@@ -68,12 +71,8 @@ class Player extends Component {
   }
 
   render() {
-    // if (!this.props.auth) {
-    //   return <Redirect to={{ pathname: '/' }} />;
-    // }
-
-    if (this.props.roster) {
-      return <Redirect to={{ pathname: '/roster' }} />;
+    if (!this.props.auth) {
+      return <Redirect to={{ pathname: '/' }} />;
     }
 
     return (
@@ -94,8 +93,8 @@ class Player extends Component {
 }
 
 function mapStateToProps(state) {
-  const { auth, roster } = state;
-  return { auth, roster };
+  const { auth, playerAdded, roster } = state;
+  return { auth, playerAdded, roster };
 }
 
-export default connect(mapStateToProps, { addPlayer })(Player);
+export default withRouter(connect(mapStateToProps, { addPlayer })(Player));
