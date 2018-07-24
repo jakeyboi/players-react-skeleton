@@ -60,8 +60,6 @@ export const addPlayer = ({
   try {
     const res = await axios.post(`${URL}/players`, player, authConfig);
     dispatch({ type: ADD_PLAYER, payload: res.data });
-    // const res2 = await axios.get(`${URL}/players`, authConfig);
-    // dispatch({ type: FETCH_ROSTER, payload: res.data });
   } catch (err) {
     console.log(err);
   }

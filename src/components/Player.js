@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
-import { Redirect } from 'react-router-dom';
+import { Redirect, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
 import newPlayerFields from './form/newPlayerFields';
 import { addPlayer } from '../actions';
-import { ADD_PLAYER } from '../actions/types';
 
 class Player extends Component {
   constructor(props) {
@@ -92,9 +90,8 @@ class Player extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  const { auth, playerAdded, roster } = state;
-  return { auth, playerAdded, roster };
+function mapStateToProps({ auth }) {
+  return { auth };
 }
 
 export default withRouter(connect(mapStateToProps, { addPlayer })(Player));

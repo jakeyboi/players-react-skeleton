@@ -7,16 +7,13 @@ import { fetchPlayers } from '../actions';
 class Roster extends Component {
   constructor(props) {
     super(props);
-    // this.setState(this.state);
-    console.log(`login token: ${JSON.stringify(this.props.auth.token)}`);
-    // this.props.playerAdded = '';
-    if(this.props.auth) {
+
+    if (this.props.auth) {
       this.props.fetchPlayers(this.props.auth.token);
     }
   }
 
   renderPlayers() {
-    console.log('roster in ROSTER: ' + JSON.stringify(this.props.roster));
     if (this.props.roster) {
       const { players } = this.props.roster;
       return (
