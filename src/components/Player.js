@@ -3,7 +3,7 @@ import _ from 'lodash';
 import { Redirect, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import newPlayerFields from './form/newPlayerFields';
-import newPlayerRadio from './form/newPlayerRadio';
+import newPlayerSelect from './form/newPlayerSelect';
 import { addPlayer } from '../actions';
 
 class Player extends Component {
@@ -13,11 +13,11 @@ class Player extends Component {
       firstName: '',
       lastName: '',
       rating: 0,
-      handedness: '',
+      handedness: 'right',
     };
 
     this.handleChange = this.handleChange.bind(this);
-    this.handleRadioChange = this.handleRadioChange.bind(this);
+    this.handleSelectChange = this.handleSelectChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -27,8 +27,9 @@ class Player extends Component {
     this.setState(change);
   }
 
-  handleRadioChange(e) {
-    this.setState({ handedness: e.target.id });
+  handleSelectChange(e) {
+    console.log('value: ' + e.target.value);
+    this.setState({ handedness: e.target.value });
   }
 
   handleSubmit(e) {
@@ -52,21 +53,9 @@ class Player extends Component {
     ));
   }
 
-  renderRadios() {
-    return _.map(newPlayerRadio, ({ label, name, type }) => (
-      <div key={name}>
-        <p>
-          <label htmlFor={name}>
-            <input
-              name="handedness"
-              type="radio"
-              id={name}
-              onChange={this.handleRadioChange}
-            />
-            <span>{label}</span>
-          </label>
-        </p>
-      </div>
+  renderSelect() {
+    return _.map(newPlayerSelect, ({ value, text }) => (
+      <option key={value} value={value}>{text}</option>
     ));
   }
 
@@ -75,19 +64,27 @@ class Player extends Component {
       return <Redirect to={{ pathname: '/' }} />;
     }
 
+    const styles = { marginTop: '20px' };
     return (
       <div>
         <h4>Add Player</h4>
         <form onSubmit={this.handleSubmit}>
           {this.renderFields()}
           <label htmlFor="handedness">Handedness</label>
-          <div id="handedness">
-            {this.renderRadios()}
-          </div>
+          <select
+            id="handedness"
+            name="handedness"
+            className="browser-default"
+            onChange={this.handleSelectChange}
+            value={this.state.handedness}
+          >
+            {this.renderSelect()}
+          </select>
           <button
             id="create"
             type="submit"
             className="center-align teal btn-flat right white-text"
+            style={styles}
           >
             Submit
           </button>
