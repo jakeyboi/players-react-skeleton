@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import formFields from './form/registerFormFields';
 import { registerUser } from '../actions';
 
@@ -28,6 +28,7 @@ class Register extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
+    this.props.history.push('/roster');
     this.props.registerUser(this.state);
   }
 
@@ -47,10 +48,6 @@ class Register extends Component {
   }
 
   render() {
-    // if (this.props.auth) {
-    //   return <Redirect to={{ pathname: '/roster' }} />;
-    // }
-
     return (
       <div>
         <h4>Team Captain Registration</h4>
@@ -73,4 +70,4 @@ function mapStateToProps({ auth }) {
   return { auth };
 }
 
-export default connect(mapStateToProps, { registerUser })(Register);
+export default withRouter(connect(mapStateToProps, { registerUser })(Register));
