@@ -42,6 +42,7 @@ class Player extends Component {
       <div key={name}>
         <label htmlFor={name}>{label}</label>
         <input
+          id={name}
           name={name}
           type={type}
           value={this.state[name]}
@@ -80,8 +81,11 @@ class Player extends Component {
         <form onSubmit={this.handleSubmit}>
           {this.renderFields()}
           <label htmlFor="handedness">Handedness</label>
-          {this.renderRadios()}
+          <div id="handedness">
+            {this.renderRadios()}
+          </div>
           <button
+            id="create"
             type="submit"
             className="center-align teal btn-flat right white-text"
           >
