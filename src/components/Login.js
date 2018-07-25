@@ -45,10 +45,6 @@ class Login extends Component {
   }
 
   render() {
-    // if (this.props.auth) {
-    //   return <Redirect to={{ pathname: '/roster' }} />;
-    // }
-
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
