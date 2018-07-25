@@ -13,7 +13,7 @@ const Landing = () => (
           </p>
         </div>
         <div className="card-action center-align">
-          <Link to={{ pathname: '/register'}}>
+          <Link to="/register">
             Register Now!
           </Link>
         </div>

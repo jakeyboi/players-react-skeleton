@@ -71,7 +71,4 @@ function mapStateToProps({ auth }) {
   return { auth };
 }
 
-export default connect(
-  mapStateToProps,
-  { registerUser }
-)(Register);
+export default connect(mapStateToProps, { registerUser })(Register);
