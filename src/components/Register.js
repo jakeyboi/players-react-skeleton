@@ -36,6 +36,7 @@ class Register extends Component {
       <div key={name}>
         <label htmlFor={name}>{label}</label>
         <input
+          id={name}
           name={name}
           type={type}
           value={this.state[name]}
@@ -46,9 +47,9 @@ class Register extends Component {
   }
 
   render() {
-    if (this.props.auth) {
-      return <Redirect to={{ pathname: '/roster' }} />;
-    }
+    // if (this.props.auth) {
+    //   return <Redirect to={{ pathname: '/roster' }} />;
+    // }
 
     return (
       <div>
@@ -56,6 +57,7 @@ class Register extends Component {
         <form onSubmit={this.handleSubmit}>
           {this.renderFields()}
           <button
+            id="register"
             type="submit"
             className="center-align teal btn-flat right white-text"
           >

@@ -33,6 +33,7 @@ class Login extends Component {
       <div key={name}>
         <label htmlFor={name}>{label}</label>
         <input
+          id={name}
           name={name}
           type={type}
           value={this.state[name]}
@@ -52,6 +53,7 @@ class Login extends Component {
         <form onSubmit={this.handleSubmit}>
           {this.renderFields()}
           <button
+            id="login"
             type="submit"
             className="center-align teal btn-flat right white-text"
           >

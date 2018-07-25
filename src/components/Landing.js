@@ -14,7 +14,7 @@ const Landing = () => (
         </div>
         <div className="card-action center-align">
           <Link to="/register">
-            Register Now!
+            Register
           </Link>
         </div>
       </div>
