@@ -26,8 +26,6 @@ export const registerUser = ({
   }
 };
 
-// Jake Irvin, jbirvin1289@gmail.com 3jUbe0eSnPkbJp@sGXHA
-
 export const loginUser = ({ email, password }) => async (dispatch) => {
   const user = {
     email,
