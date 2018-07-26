@@ -7,7 +7,7 @@ const Header = () => {
   return (
     <nav>
       <div className="nav-wrapper">
-        <Link to="/" className="left brand-logo">
+        <Link to="/" className="left brand-logo" id="logo">
           Scrabbly!
         </Link>
         <Link style={styles} to="/login" className="right">
